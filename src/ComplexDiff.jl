@@ -1,5 +1,9 @@
 module ComplexDiff
 
-# Write your package code here.
+include("bicomplex.jl")
+
+export derivative
+
+export bicomplex
 
 end
