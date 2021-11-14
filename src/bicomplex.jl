@@ -1,6 +1,8 @@
-import Base: sin, cos, tan, cot, sec, csc
+import Base: sin, cos, tan, cot, sec, csc, atan
 
 import Base: sinh, cosh, tanh, coth, sech, csch
+
+import Base: abs, exp, log
 
 import Base: +, -, *, /, ^
 
@@ -10,6 +12,13 @@ struct bicomplex
     i2
 end
 
+"""
+Using matrix to represent bicomplex.
+
+```math
+
+```
+"""
 function mat(bi::bicomplex)
     i1, i2 = bi.i1, bi.i2
     return [i1 -i2; i2 i1]
@@ -32,6 +41,21 @@ function -(bi1::bicomplex, bi2::bicomplex)
     return mat2bicomplex(result)
 end
 
+function -(bi::bicomplex)
+    result=-mat(bi)
+    return mat2bicomplex(result)
+end
+
+function *(bi1::bicomplex, bi2::bicomplex)
+    result=mat(bi1)*mat(bi2)
+    return mat2bicomplex(result)
+end
+
+function *(n, bi::bicomplex)
+    result = n*mat(bi)
+    return mat2bicomplex(result)
+end
+
 function /(bi1::bicomplex, bi2::bicomplex)
     result=mat(bi1)/mat(bi2)
     return mat2bicomplex(result)
@@ -48,6 +72,24 @@ end
 function image12(bi::bicomplex)
     i1, i2 = bi.i1, bi.i2
     return imag(i2)
+end
+
+## Basic functions: abs, exp, log
+
+function abs(bi::bicomplex)
+    i1, i2 = bi.i1, bi.i2
+    return sqrt(i1^2+i2^2)
+end
+
+function exp(bi::bicomplex)
+    i1, i2 = bi.i1, bi.i2
+    out1 = exp(i1)*cos(i2)
+    out2 = exp(i1)*sin(i2)
+    return bicomplex(out1, out2)
+end
+
+function log(bi::bicomplex)
+    
 end
 
 ## Basic math functions: sin, cos, tan, cot, sec, csc
@@ -82,12 +124,13 @@ function csc(bi::bicomplex)
     return 1/sin(bi)
 end
 
+
 ## Basic hyperbolic functions: sinh, cosh, tanh, coth, sech, csch
 
 function sinh(bi::bicomplex)
     i1, i2 = bi.i1, bi.i2
     out1 = cosh(i1)*cos(i2)
-    out2 = sinh(i1)(sin(i2))
+    out2 = sinh(i1)*(sin(i2))
     return bicomplex(out1, out2)
 end
 
