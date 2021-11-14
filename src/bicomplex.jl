@@ -36,6 +36,11 @@ function +(bi1::bicomplex, bi2::bicomplex)
     return mat2bicomplex(result)
 end
 
+function +(bi::bicomplex, n)
+    result= n.+mat(bi)
+    return mat2bicomplex(result)
+end
+
 function -(bi1::bicomplex, bi2::bicomplex)
     result=mat(bi1)-mat(bi2)
     return mat2bicomplex(result)
@@ -52,6 +57,11 @@ function *(bi1::bicomplex, bi2::bicomplex)
 end
 
 function *(n, bi::bicomplex)
+    result = n*mat(bi)
+    return mat2bicomplex(result)
+end
+
+function *(bi::bicomplex, n)
     result = n*mat(bi)
     return mat2bicomplex(result)
 end
@@ -157,7 +167,7 @@ function csch(bi::bicomplex)
     return 1/sinh(bi)
 end
 
-function derivative(f, point, h; order=2)
+function biderivative(f, point, h; order=2)
     result = image12(f(bicomplex(point+im*h, h)))/h^2
     return result
 end

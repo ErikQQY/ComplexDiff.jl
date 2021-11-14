@@ -61,6 +61,12 @@ function /(tri::tricomplex, n)
     return result
 end
 
+function ^(tri::tricomplex, power)
+    result=mat(tri)^power
+    return mat2tricomplex(result)
+end
+
+
 
 function sin(tri::tricomplex)
     i1, i2 = tri.i1, tri.i2
@@ -145,7 +151,7 @@ function image3(tri::tricomplex)
     return image12(i2)
 end
 
-function testderivative(f, point, h; order=3)
+function triderivative(f, point, h; order=3)
     result = image3(f(tricomplex(bicomplex(point+im*h, h), h)))/h^3
     return result
 end

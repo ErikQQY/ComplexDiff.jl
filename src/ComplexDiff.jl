@@ -1,8 +1,9 @@
 module ComplexDiff
 
 include("bicomplex.jl")
+include("tricomplex.jl")
 
-export derivative
+export biderivative, triderivative
 
 export bicomplex
 
