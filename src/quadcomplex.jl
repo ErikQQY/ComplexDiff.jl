@@ -160,7 +160,7 @@ function image4(quad::quadcomplex)
     return image3(i2)
 end
 
-function testtestderivative(f, point, h, order=4)
+function quadderivative(f, point, h, order=4)
     result = image4(f(quadcomplex(tricomplex(bicomplex(point+im*h, h), h), h)))/h^4
     return result
 end
