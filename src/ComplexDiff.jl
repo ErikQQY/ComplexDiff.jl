@@ -1,5 +1,6 @@
 module ComplexDiff
 
+include("unicomplex.jl")
 include("bicomplex.jl")
 include("tricomplex.jl")
 

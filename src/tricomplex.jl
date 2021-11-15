@@ -32,7 +32,12 @@ function +(tri1::tricomplex, tri2::tricomplex)
 end
 
 function +(n, tri::tricomplex)
-    result = n+mat(tri)
+    result = n.+mat(tri)
+    return mat2tricomplex(result)
+end
+
+function +(tri::tricomplex, n)
+    result = n.+mat(tri)
     return mat2tricomplex(result)
 end
 
@@ -47,6 +52,11 @@ function *(tri1::tricomplex, tri2::tricomplex)
 end
 
 function *(n, tri::tricomplex)
+    result = n*mat(tri)
+    return mat2tricomplex(result)
+end
+
+function *(tri::tricomplex, n)
     result = n*mat(tri)
     return mat2tricomplex(result)
 end
