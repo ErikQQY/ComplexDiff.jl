@@ -41,6 +41,11 @@ function +(bi::bicomplex, n)
     return mat2bicomplex(result)
 end
 
+function +(n, bi::bicomplex)
+    result = n.+mat(bi)
+    return mat2bicomplex(result)
+end
+
 function -(bi1::bicomplex, bi2::bicomplex)
     result=mat(bi1)-mat(bi2)
     return mat2bicomplex(result)

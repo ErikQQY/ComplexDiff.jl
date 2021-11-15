@@ -16,7 +16,7 @@ end
 
 function mat(tri::tricomplex)
     i1, i2 = tri.i1, tri.i2
-    return [i1 -i2; i1 i2]
+    return [i1 -i2; i2 i1]
 end
 
 function mat2tricomplex(matrix)
@@ -31,9 +31,14 @@ function +(tri1::tricomplex, tri2::tricomplex)
     return mat2tricomplex(result)
 end
 
+function +(n, tri::tricomplex)
+    result = n+mat(tri)
+    return mat2tricomplex(result)
+end
+
 function -(tri1::tricomplex, tri2::tricomplex)
     result=mat(tri1)-mat(tri2)
-    return result
+    return mat2tricomplex(result)
 end
 
 function *(tri1::tricomplex, tri2::tricomplex)
@@ -48,7 +53,7 @@ end
 
 function /(tri1::tricomplex, tri2::tricomplex)
     result=mat(tri1)-mat(tri2)
-    return result
+    return mat2tricomplex(result)
 end
 
 function /(n, tri::tricomplex)
@@ -58,7 +63,7 @@ end
 
 function /(tri::tricomplex, n)
     result=mat(tri)/n
-    return result
+    return mat2tricomplex(result)
 end
 
 function ^(tri::tricomplex, power)
