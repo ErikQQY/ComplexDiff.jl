@@ -2,9 +2,10 @@ import Base: sin, cos, tan, cot, sec, csc, atan
 
 import Base: sinh, cosh, tanh, coth, sech, csch
 
-import Base: abs, exp, log
+import Base: abs, exp, log, zero
 
 import Base: +, -, *, /, ^
+
 
 
 struct bicomplex
@@ -32,32 +33,32 @@ end
 ## Basic operators: +, -, *, /, ^
 
 function +(bi1::bicomplex, bi2::bicomplex)
-    result=mat(bi1)+mat(bi2)
+    result = mat(bi1)+mat(bi2)
     return mat2bicomplex(result)
 end
 
 function +(bi::bicomplex, n)
-    result= n.+mat(bi)
+    result = n .+mat(bi)
     return mat2bicomplex(result)
 end
 
 function +(n, bi::bicomplex)
-    result = n.+mat(bi)
+    result = n .+mat(bi)
     return mat2bicomplex(result)
 end
 
 function -(bi1::bicomplex, bi2::bicomplex)
-    result=mat(bi1)-mat(bi2)
+    result = mat(bi1)-mat(bi2)
     return mat2bicomplex(result)
 end
 
 function -(bi::bicomplex)
-    result=-mat(bi)
+    result = -mat(bi)
     return mat2bicomplex(result)
 end
 
 function *(bi1::bicomplex, bi2::bicomplex)
-    result=mat(bi1)*mat(bi2)
+    result = mat(bi1)*mat(bi2)
     return mat2bicomplex(result)
 end
 
@@ -76,18 +77,26 @@ function /(bi1::bicomplex, bi2::bicomplex)
     return mat2bicomplex(result)
 end
 
-function ^(bi::bicomplex, power)
-    result=mat(bi)^power
+function /(n, bi::bicomplex)
+    result= n*inv(mat(bi))
     return mat2bicomplex(result)
 end
 
-
-
-
-function image12(bi::bicomplex)
-    i1, i2 = bi.i1, bi.i2
-    return imag(i2)
+function /(bi::bicomplex, n)
+    result=mat(bi)/n
+    return mat2bicomplex(result)
 end
+
+function ^(bi::bicomplex, power)
+    result = mat(bi)^power
+    return mat2bicomplex(result)
+end
+
+function zero(bi::bicomplex)
+    i1, i2 = bi.i1, bi.i2
+    return bicomplex(zero(i1), zero(i2))
+end
+
 
 ## Basic functions: abs, exp, log
 
@@ -145,7 +154,7 @@ end
 function sinh(bi::bicomplex)
     i1, i2 = bi.i1, bi.i2
     out1 = cosh(i1)*cos(i2)
-    out2 = sinh(i1)*(sin(i2))
+    out2 = sinh(i1)*sin(i2)
     return bicomplex(out1, out2)
 end
 
@@ -172,7 +181,15 @@ function csch(bi::bicomplex)
     return 1/sinh(bi)
 end
 
-function biderivative(f, point, h; order=2)
-    result = image12(f(bicomplex(point+im*h, h)))/h^2
+
+
+function image2(bi::bicomplex)
+    i1, i2 = bi.i1, bi.i2
+    return imag(i2)
+end
+
+
+function biderivative(f, point, h)
+    result = image2(f(bicomplex(point+im*h, h)))/h^2
     return result
 end

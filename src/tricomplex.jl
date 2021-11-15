@@ -32,12 +32,12 @@ function +(tri1::tricomplex, tri2::tricomplex)
 end
 
 function +(n, tri::tricomplex)
-    result = n.+mat(tri)
+    result = n .+mat(tri)
     return mat2tricomplex(result)
 end
 
 function +(tri::tricomplex, n)
-    result = n.+mat(tri)
+    result = n .+mat(tri)
     return mat2tricomplex(result)
 end
 
@@ -45,6 +45,8 @@ function -(tri1::tricomplex, tri2::tricomplex)
     result=mat(tri1)-mat(tri2)
     return mat2tricomplex(result)
 end
+
+-(tri::tricomplex)=mat2tricomplex(-mat(tri))
 
 function *(tri1::tricomplex, tri2::tricomplex)
     result=mat(tri1)*mat(tri2)
@@ -67,7 +69,7 @@ function /(tri1::tricomplex, tri2::tricomplex)
 end
 
 function /(n, tri::tricomplex)
-    result=n./mat(tri)
+    result=n*inv(mat(tri))
     return mat2tricomplex(result)
 end
 
@@ -81,7 +83,17 @@ function ^(tri::tricomplex, power)
     return mat2tricomplex(result)
 end
 
+function zero(tri::tricomplex)
+    i1, i2 = tri.i1, tri.i2
+    return tricomplex(zero(i1), zero(i2))
+end
 
+
+
+function abs(tri::tricomplex)
+    i1, i2 = tri.i1, tri.i2
+    return sqrt(i1^2+i2^2)
+end
 
 function sin(tri::tricomplex)
     i1, i2 = tri.i1, tri.i2
@@ -163,10 +175,10 @@ end
 
 function image3(tri::tricomplex)
     i1, i2 = tri.i1, tri.i2
-    return image12(i2)
+    return image2(i2)
 end
 
-function triderivative(f, point, h; order=3)
+function triderivative(f, point, h)
     result = image3(f(tricomplex(bicomplex(point+im*h, h), h)))/h^3
     return result
 end

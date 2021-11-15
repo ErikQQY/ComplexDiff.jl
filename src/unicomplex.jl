@@ -1,7 +1,3 @@
-function test(a, b; order=1)
-    return a+b
-end
-
-function test(a, b; order=2)
-    return a-b
+function derivative(f, point, h)
+    return imag(f(point+im*h))/h
 end

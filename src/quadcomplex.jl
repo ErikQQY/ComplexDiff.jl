@@ -2,7 +2,7 @@ import Base: sin, cos, tan, cot, sec, csc, atan
 
 import Base: sinh, cosh, tanh, coth, sech, csch
 
-import Base: abs, exp, log
+import Base: abs, exp, log, zero, one
 
 import Base: +, -, *, /, ^
 
@@ -31,7 +31,12 @@ function +(quad1::quadcomplex, quad2::quadcomplex)
 end
 
 function +(n, quad::quadcomplex)
-    result=n-mat(quad)
+    result=n .+mat(quad)
+    return mat2quadcomplex(result)
+end
+
+function +(quad::quadcomplex, n)
+    result=n .+mat(quad)
     return mat2quadcomplex(result)
 end
 
@@ -41,7 +46,7 @@ function -(quad1::quadcomplex, quad2::quadcomplex)
 end
 
 function -(n, quad::quadcomplex)
-    result=n-mat(quad)
+    result=n .-mat(quad)
     return mat2quadcomplex(result)
 end
 
@@ -60,14 +65,34 @@ function *(n, quad::quadcomplex)
     return mat2quadcomplex(result)
 end
 
+function *(quad::quadcomplex, n)
+    result = n*mat(quad)
+    return mat2quadcomplex(result)
+end
+
 function /(quad1::quadcomplex, quad2::quadcomplex)
     result=mat(quad1)/mat(quad2)
     return mat2quadcomplex(result)
 end
 
+function /(n, quad::quadcomplex)
+    result=n*inv(quad)
+    return result
+end
+
 function ^(quad::quadcomplex, power)
     result=mat(quad)^power
     return mat2quadcomplex(result)
+end
+
+function zero(quad::quadcomplex)
+    i1, i2 = quad.i1, quad.i2
+    return quadcomplex(zero(i1), zero(i2))
+end
+
+function one(quad::quadcomplex)
+    i1, i2 = quad.i1, quad.i2
+    return quadcomplex(one(i1), one(i2))
 end
 
 ## Basic functions: abs, exp, log
@@ -160,7 +185,7 @@ function image4(quad::quadcomplex)
     return image3(i2)
 end
 
-function quadderivative(f, point, h, order=4)
+function quadderivative(f, point, h)
     result = image4(f(quadcomplex(tricomplex(bicomplex(point+im*h, h), h), h)))/h^4
     return result
 end
