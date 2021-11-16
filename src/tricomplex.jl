@@ -2,7 +2,7 @@ import Base: sin, cos, tan, cot, sec, csc, atan
 
 import Base: sinh, cosh, tanh, coth, sech, csch
 
-import Base: abs, exp, log
+import Base: abs, exp, log, zero
 
 import Base: +, -, *, /, ^
 

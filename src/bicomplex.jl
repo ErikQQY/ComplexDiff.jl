@@ -15,10 +15,6 @@ end
 
 """
 Using matrix to represent bicomplex.
-
-```math
-
-```
 """
 function mat(bi::bicomplex)
     i1, i2 = bi.i1, bi.i2
@@ -51,6 +47,12 @@ function -(bi1::bicomplex, bi2::bicomplex)
     result = mat(bi1)-mat(bi2)
     return mat2bicomplex(result)
 end
+
+function -(bi::bicomplex, n)
+    result = mat(bi).-n
+    return mat2bicomplex(result)
+end
+
 
 function -(bi::bicomplex)
     result = -mat(bi)
@@ -180,7 +182,6 @@ end
 function csch(bi::bicomplex)
     return 1/sinh(bi)
 end
-
 
 
 function image2(bi::bicomplex)

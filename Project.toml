@@ -1,6 +1,6 @@
 name = "ComplexDiff"
 uuid = "79852310-0c84-4a19-a2da-89f133eb5081"
-authors = ["Qingyu Qu"]
+authors = ["Qingyu Qu <erikqqy123@gmail.com>"]
 version = "0.1.0"
 
 [compat]
