@@ -114,9 +114,6 @@ function exp(bi::bicomplex)
     return bicomplex(out1, out2)
 end
 
-function log(bi::bicomplex)
-    
-end
 
 ## Basic math functions: sin, cos, tan, cot, sec, csc
 

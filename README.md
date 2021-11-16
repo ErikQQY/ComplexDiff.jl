@@ -7,4 +7,4 @@
 
 ComplexDiff.jl fully utilize the complex step differentiation to compute accurate and high order derivative.
 
-The second order derivative using Complex Step Differentiation is OK  and has a impressive performance, however, the higher order exhibit some errors😟
+The second order derivative using Complex Step Differentiation is OK  and has an impressive performance, however, the higher order exhibit errors for some functions😟
