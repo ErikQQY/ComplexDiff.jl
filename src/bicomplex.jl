@@ -7,7 +7,7 @@ import Base: abs, exp, log, zero
 import Base: +, -, *, /, ^
 
 
-
+## By constructing bicomplex, we can represent multi-complex numbers using recursion
 struct bicomplex
     i1
     i2
