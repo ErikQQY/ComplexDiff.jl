@@ -5,6 +5,6 @@
 [![Build Status](https://github.com/ErikQQY/ComplexDiff.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/ErikQQY/ComplexDiff.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/ErikQQY/ComplexDiff.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/ErikQQY/ComplexDiff.jl)
 
-ComplexDiff.jl fully utilize the complex step differentiation to compute accurate and high order derivative.
+ComplexDiff.jl fully utilize the complex step differentiation to compute accurate and high precision high order derivative.
 
-The second order derivative using Complex Step Differentiation is OK  and has a impressive performance, however, the higher order exhibit some errors😟
+> The second order derivative using Complex Step Differentiation is amazing and has a impressive performance, however, the higher order exhibit some errors😟

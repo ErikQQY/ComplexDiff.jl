@@ -89,10 +89,6 @@ function exp(penta::pentacomplex)
     return pentacomplex(out1, out2)
 end
 
-function log(penta::pentacomplex)
-    
-end
-
 ## Basic math functions: sin, cos, tan, cot, sec, csc
 
 function sin(penta::pentacomplex)
