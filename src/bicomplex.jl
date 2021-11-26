@@ -7,7 +7,7 @@ import Base: abs, exp, log, zero
 import Base: +, -, *, /, ^
 
 
-
+## By constructing bicomplex, we can represent multi-complex numbers using recursion
 struct bicomplex
     i1
     i2
@@ -113,7 +113,6 @@ function exp(bi::bicomplex)
     out2 = exp(i1)*sin(i2)
     return bicomplex(out1, out2)
 end
-
 
 ## Basic math functions: sin, cos, tan, cot, sec, csc
 

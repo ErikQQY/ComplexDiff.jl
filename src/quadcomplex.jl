@@ -109,7 +109,6 @@ function exp(quad::quadcomplex)
     return quadcomplex(out1, out2)
 end
 
-
 ## Basic math functions: sin, cos, tan, cot, sec, csc
 
 function sin(quad::quadcomplex)
