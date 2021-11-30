@@ -1,0 +1,3 @@
+var documenterSearchIndex = {"docs":
+[{"location":"","page":"Home","title":"Home","text":"CurrentModule = ComplexDiff","category":"page"},{"location":"#ComplexDiff","page":"Home","title":"ComplexDiff","text":"","category":"section"},{"location":"","page":"Home","title":"Home","text":"Documentation for ComplexDiff.","category":"page"},{"location":"","page":"Home","title":"Home","text":"","category":"page"},{"location":"","page":"Home","title":"Home","text":"Modules = [ComplexDiff]","category":"page"},{"location":"#ComplexDiff.mat-Tuple{bicomplex}","page":"Home","title":"ComplexDiff.mat","text":"Using matrix to represent bicomplex.\n\n\n\n\n\n","category":"method"}]
+}
