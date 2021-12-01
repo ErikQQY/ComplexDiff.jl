@@ -1,8 +1,11 @@
 import Base: sin, cos, tan, cot, sec, csc
 
-import asin, acos, atan
+## Some auxillary functions
+import Base: real, imag, reim, ==
 
-import asinh, acosh, atanh
+import Base: asin, acos, atan
+
+import Base: asinh, acosh, atanh
 
 import Base: sinh, cosh, tanh, coth, sech, csch
 
@@ -28,6 +31,15 @@ end
 function mat2bicomplex(matrix)
     out1, out2 = matrix[1, 1], matrix[2, 1]
     return bicomplex(out1, out2)
+end
+
+function reim(bi::bicomplex)
+    i1, i2 = bi.i1, bi.i2
+    return (i1, i2)
+end
+
+function ==(a::bicomplex, b::bicomplex)
+
 end
 
 ## Basic operators: +, -, *, /, ^
