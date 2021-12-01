@@ -1,4 +1,8 @@
-import Base: sin, cos, tan, cot, sec, csc, atan
+import Base: sin, cos, tan, cot, sec, csc
+
+import asin, acos, atan
+
+import asinh, acosh, atanh
 
 import Base: sinh, cosh, tanh, coth, sech, csch
 
@@ -114,6 +118,17 @@ function exp(bi::bicomplex)
     return bicomplex(out1, out2)
 end
 
+function log(bi::bicomplex)
+    out1 = log(abs(bi))
+    out2 = angle(bi)
+    return bicomplex(out1, out2)
+end
+
+function angle(bi::bicomplex)
+    i1, i2 = bi.i1, bi.i2
+    return atan(i2/i1)
+end
+
 ## Basic math functions: sin, cos, tan, cot, sec, csc
 
 function sin(bi::bicomplex)
@@ -146,6 +161,15 @@ function csc(bi::bicomplex)
     return 1/sin(bi)
 end
 
+
+## Basic inverse hyperbolic trig function: asinh, acosh, atanh, acoth, asech, acsch
+
+
+function atan(bi::bicomplex)
+    i1, i2 = bi.i1, bi.i2
+    temp = atanh(bicomplex(-i2, i1))
+    return bicomplex(temp.i2, temp.i1)
+end
 
 ## Basic hyperbolic functions: sinh, cosh, tanh, coth, sech, csch
 
