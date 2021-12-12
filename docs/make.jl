@@ -15,6 +15,8 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Principle" => "principle.md",
+        "High Order derivative" => "highorder.md"
     ],
 )
 
