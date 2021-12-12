@@ -13,6 +13,7 @@ makedocs(;
         canonical="https://ErikQQY.github.io/ComplexDiff.jl",
         assets=String[],
     ),
+
     pages=[
         "Home" => "index.md",
         "Principle" => "principle.md",
@@ -22,5 +23,5 @@ makedocs(;
 
 deploydocs(;
     repo="github.com/ErikQQY/ComplexDiff.jl",
-    devbranch="main",
+    devbranch="master",
 )
