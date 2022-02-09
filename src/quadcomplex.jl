@@ -25,65 +25,22 @@ end
 
 ## Basic operators: +, -, *, /, ^
 
-function +(quad1::quadcomplex, quad2::quadcomplex)
-    result=mat(quad1)+mat(quad2)
-    return mat2quadcomplex(result)
-end
++(quad1::quadcomplex, quad2::quadcomplex) = mat2quadcomplex(mat(quad1)+mat(quad2))
++(n, quad::quadcomplex) = mat2quadcomplex(n.+mat(quad))
++(quad::quadcomplex, n) = +(n, quad)
 
-function +(n, quad::quadcomplex)
-    result=n .+mat(quad)
-    return mat2quadcomplex(result)
-end
+-(quad1::quadcomplex, quad2::quadcomplex) = mat2quadcomplex(mat(quad1)-mat(quad2))
+-(n, quad::quadcomplex) = mat2quadcomplex(n.-mat(quad))
+-(quad::quadcomplex) = mat2quadcomplex(-mat(quad))
 
-function +(quad::quadcomplex, n)
-    result=n .+mat(quad)
-    return mat2quadcomplex(result)
-end
+*(quad1::quadcomplex, quad2::quadcomplex) = mat2quadcomplex(mat(quad1)*mat(quad2))
+*(n, quad::quadcomplex) = mat2quadcomplex(n*mat(quad))
+*(quad::quadcomplex, n) = *(n, quad)
 
-function -(quad1::quadcomplex, quad2::quadcomplex)
-    result=mat(quad1)-mat(quad2)
-    return mat2quadcomplex(result)
-end
+/(quad1::quadcomplex, quad2::quadcomplex) = mat2quadcomplex(mat(quad1)/mat(quad2))
+/(n, quad::quadcomplex) = n*inv(quad)
 
-function -(n, quad::quadcomplex)
-    result=n .-mat(quad)
-    return mat2quadcomplex(result)
-end
-
-function -(quad::quadcomplex)
-    result=-mat(quad)
-    return mat2quadcomplex(result)
-end
-
-function *(quad1::quadcomplex, quad2::quadcomplex)
-    result=mat(quad1)*mat(quad2)
-    return mat2quadcomplex(result)
-end
-
-function *(n, quad::quadcomplex)
-    result = n*mat(quad)
-    return mat2quadcomplex(result)
-end
-
-function *(quad::quadcomplex, n)
-    result = n*mat(quad)
-    return mat2quadcomplex(result)
-end
-
-function /(quad1::quadcomplex, quad2::quadcomplex)
-    result=mat(quad1)/mat(quad2)
-    return mat2quadcomplex(result)
-end
-
-function /(n, quad::quadcomplex)
-    result=n*inv(quad)
-    return result
-end
-
-function ^(quad::quadcomplex, power)
-    result=mat(quad)^power
-    return mat2quadcomplex(result)
-end
+^(quad::quadcomplex, power) = mat2quadcomplex(mat(quad)^power)
 
 function zero(quad::quadcomplex)
     i1, i2 = quad.i1, quad.i2
@@ -125,21 +82,10 @@ function cos(quad::quadcomplex)
     return quadcomplex(out1, out2)
 end
 
-function tan(quad::quadcomplex)
-    return sin(quad)/cos(quad)
-end
-
-function cot(quad::quadcomplex)
-    return cos(quad)/sin(quad)
-end
-
-function sec(quad::quadcomplex)
-    return 1/cos(quad)
-end
-
-function csc(quad::quadcomplex)
-    return 1/sin(quad)
-end
+tan(quad::quadcomplex) = sin(quad)/cos(quad)
+cot(quad::quadcomplex) = cos(quad)/sin(quad)
+sec(quad::quadcomplex) = 1/cos(quad)
+csc(quad::quadcomplex) = 1/sin(quad)
 
 
 ## Basic hyperbolic functions: sinh, cosh, tanh, coth, sech, csch
@@ -158,21 +104,10 @@ function cosh(quad::quadcomplex)
     return quadcomplex(out1, out2)
 end
 
-function tanh(quad::quadcomplex)
-    return sinh(quad)/cosh(quad)
-end
-
-function coth(quad::quadcomplex)
-    return cosh(quad)/sinh(quad)
-end
-
-function sech(quad::quadcomplex)
-    return 1/cosh(quad)
-end
-
-function csch(quad::quadcomplex)
-    return 1/sinh(quad)
-end
+tanh(quad::quadcomplex) = sinh(quad)/cosh(quad)
+coth(quad::quadcomplex) = cosh(quad)/sinh(quad)
+sech(quad::quadcomplex) = 1/cosh(quad)
+csch(quad::quadcomplex) = 1/sinh(quad)
 
 
 

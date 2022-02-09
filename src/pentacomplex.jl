@@ -30,57 +30,28 @@ function +(penta1::pentacomplex, penta2::pentacomplex)
     return mat2pentacomplex(result)
 end
 
-function +(n, penta::pentacomplex)
-    result=n .+mat(penta)
-    return mat2pentacomplex(result)
-end
++(n, penta::pentacomplex) = mat2pentacomplex(n .+mat(penta))
 
-function +(penta::pentacomplex, n)
-    result=n .+mat(penta)
-    return mat2pentacomplex(result)
-end
++(penta::pentacomplex, n) = +(n, penta)
 
-function -(penta1::pentacomplex, penta2::pentacomplex)
-    result=mat(penta1)-mat(penta2)
-    return mat2pentacomplex(result)
-end
+-(penta1::pentacomplex, penta2::pentacomplex) = mat2pentacomplex(mat(penta1)-mat(penta2))
+-(n, penta::pentacomplex) = mat2pentacomplex(n .-mat(penta))
+-(penta::pentacomplex, n) = -(n, penta)
+-(penta::pentacomplex) = mat2pentacomplex(-mat(penta))
 
-function -(n, penta::pentacomplex)
-    result = n .-mat(penta)
-    return mat2pentacomplex(result)
-end
+*(penta1::pentacomplex, penta2::pentacomplex) = mat2pentacomplex(mat(penta1)*mat(penta2))
+*(n, penta::pentacomplex) = mat2pentacomplex(n*mat(penta))
+*(penta::pentacomplex, n) = *(n, penta)
 
-function -(penta::pentacomplex)
-    result=-mat(penta)
-    return mat2pentacomplex(result)
-end
+/(penta1::pentacomplex, penta2::pentacomplex) = mat2pentacomplex(mat(penta1)/mat(penta2))
+/(n, penta::pentacomplex) = mat2pentacomplex(n*inv(mat(penta)))
+/(penta::pentacomplex, n) = mat2pentacomplex(mat(penta)/n)
 
-function *(penta1::pentacomplex, penta2::pentacomplex)
-    result=mat(penta1)*mat(penta2)
-    return mat2pentacomplex(result)
-end
-
-function *(n, penta::pentacomplex)
-    result = n*mat(penta)
-    return mat2pentacomplex(result)
-end
-
-function /(penta1::pentacomplex, penta2::pentacomplex)
-    result=mat(penta1)/mat(penta2)
-    return mat2pentacomplex(result)
-end
-
-function ^(penta::pentacomplex, power)
-    result=mat(penta)^power
-    return mat2pentacomplex(result)
-end
+^(penta::pentacomplex, power) = mat2pentacomplex(mat(penta)^power)
 
 ## Basic functions: abs, exp, log
 
-function abs(penta::pentacomplex)
-    i1, i2 = penta.i1, penta.i2
-    return sqrt(i1^2+i2^2)
-end
+abs(penta::pentacomplex) = sqrt(penta.i1^2+penta.i2^2)
 
 function exp(penta::pentacomplex)
     i1, i2 = penta.i1, penta.i2
@@ -105,21 +76,10 @@ function cos(penta::pentacomplex)
     return pentacomplex(out1, out2)
 end
 
-function tan(penta::pentacomplex)
-    return sin(penta)/cos(penta)
-end
-
-function cot(penta::pentacomplex)
-    return cos(penta)/sin(penta)
-end
-
-function sec(penta::pentacomplex)
-    return 1/cos(penta)
-end
-
-function csc(penta::pentacomplex)
-    return 1/sin(penta)
-end
+tan(penta::pentacomplex) = sin(penta)/cos(penta)
+cot(penta::pentacomplex) = cos(penta)/sin(penta)
+sec(penta::pentacomplex) = 1/cos(penta)
+csc(penta::pentacomplex) = 1/sin(penta)
 
 
 ## Basic hyperbolic functions: sinh, cosh, tanh, coth, sech, csch
@@ -138,21 +98,10 @@ function cosh(penta::pentacomplex)
     return pentacomplex(out1, out2)
 end
 
-function tanh(penta::pentacomplex)
-    return sinh(penta)/cosh(penta)
-end
-
-function coth(penta::pentacomplex)
-    return cosh(penta)/sinh(penta)
-end
-
-function sech(penta::pentacomplex)
-    return 1/cosh(penta)
-end
-
-function csch(penta::pentacomplex)
-    return 1/sinh(penta)
-end
+tanh(penta::pentacomplex) = sinh(penta)/cosh(penta)
+coth(penta::pentacomplex) = cosh(penta)/sinh(penta)
+sech(penta::pentacomplex) = 1/cosh(penta)
+csch(penta::pentacomplex) = 1/sinh(penta)
 
 
 
