@@ -6,7 +6,11 @@ include("tricomplex.jl")
 include("quadcomplex.jl")
 include("pentacomplex.jl")
 
+include("jacobian.jl")
+
+export image2
 export bicomplex, tricomplex, quadcomplex, pentacomplex
 export biderivative, triderivative, quadderivative, pentaderivative
+export jacobian
 
 end

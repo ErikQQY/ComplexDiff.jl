@@ -5,4 +5,5 @@ using Test
     include("bicomplextest.jl")
     include("tricomplextest.jl")
     include("quadcomplextest.jl")
+    include("jacobiantest.jl")
 end
