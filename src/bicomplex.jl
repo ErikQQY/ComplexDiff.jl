@@ -157,21 +157,10 @@ function cos(bi::bicomplex)
     return bicomplex(out1, out2)
 end
 
-function tan(bi::bicomplex)
-    return sin(bi)/cos(bi)
-end
-
-function cot(bi::bicomplex)
-    return cos(bi)/sin(bi)
-end
-
-function sec(bi::bicomplex)
-    return 1/cos(bi)
-end
-
-function csc(bi::bicomplex)
-    return 1/sin(bi)
-end
+tan(bi::bicomplex) = sin(bi)/cos(bi)
+cot(bi::bicomplex) = cos(bi)/sin(bi)
+sec(bi::bicomplex) = 1/cos(bi)
+csc(bi::bicomplex) = 1/sin(bi)
 
 
 ## Basic inverse hyperbolic trig function: asinh, acosh, atanh, acoth, asech, acsch
@@ -199,30 +188,13 @@ function cosh(bi::bicomplex)
     return bicomplex(out1, out2)
 end
 
-function tanh(bi::bicomplex)
-    return sinh(bi)/cosh(bi)
-end
-
-function coth(bi::bicomplex)
-    return cosh(bi)/sinh(bi)
-end
-
-function sech(bi::bicomplex)
-    return 1/cosh(bi)
-end
-
-function csch(bi::bicomplex)
-    return 1/sinh(bi)
-end
+tanh(bi::bicomplex) = sinh(bi)/cosh(bi)
+coth(bi::bicomplex) = cosh(bi)/sinh(bi)
+sech(bi::bicomplex) = 1/cosh(bi)
+csch(bi::bicomplex) = 1/sinh(bi)
 
 
-function image2(bi::bicomplex)
-    i1, i2 = bi.i1, bi.i2
-    return imag(i2)
-end
+image2(bi::bicomplex) = imag(bi.i2)
 
 
-function biderivative(f, point, h)
-    result = image2(f(bicomplex(point+im*h, h)))/h^2
-    return result
-end
+biderivative(f, point, h) = image2(f(bicomplex(point+im*h, h)))/h^2

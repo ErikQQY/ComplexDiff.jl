@@ -18,7 +18,6 @@ See Professor Nick Higham's talk on Juliacon 2018.
 <video href="https://www.youtube.com/watch?v=Q9OLOqEhc64" title="JuliaCon 2018"></video>
 
 If you are also interested in Complex Step Differentiation, please see the relating papers:
-
 * [Computation of higher-order derivatives using the multi-complex step method](https://folk.ntnu.no/preisig/HAP_Specials/AdvancedSimulation_files/2014/AdvSim-2014__Verheule_Adrian_Complex_differenetiation.pdf)
 
 * [Using Multicomplex Variables for Automatic Computation of High-Order](https://www.researchgate.net/publication/240637774_Using_Multicomplex_Variables_for_Automatic_Computation_of_High-Order_Derivatives)
