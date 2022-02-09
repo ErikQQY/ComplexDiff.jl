@@ -1,3 +1,1 @@
-function derivative(f, point, h)
-    return imag(f(point+im*h))/h
-end
+derivative(f, point, h) = imag(f(point + im*h))/h

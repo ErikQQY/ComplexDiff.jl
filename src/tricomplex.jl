@@ -1,9 +1,6 @@
 import Base: sin, cos, tan, cot, sec, csc, atan
-
 import Base: sinh, cosh, tanh, coth, sech, csch
-
 import Base: abs, exp, log, zero
-
 import Base: +, -, *, /, ^
 
 
@@ -11,7 +8,6 @@ struct tricomplex
     i1#::bicomplex
     i2
 end
-
 
 
 function mat(tri::tricomplex)
@@ -26,62 +22,22 @@ end
 
 ## Basic operators: +, -, *, /, ^
 
-function +(tri1::tricomplex, tri2::tricomplex)
-    result = mat(tri1)+mat(tri2)
-    return mat2tricomplex(result)
-end
++(tri1::tricomplex, tri2::tricomplex) = mat2tricomplex(mat(tri1)+mat(tri2))
++(n, tri::tricomplex) = mat2tricomplex(n.+mat(tri))
++(tri::tricomplex, n) = +(n, tri)
 
-function +(n, tri::tricomplex)
-    result = n .+mat(tri)
-    return mat2tricomplex(result)
-end
-
-function +(tri::tricomplex, n)
-    result = n .+mat(tri)
-    return mat2tricomplex(result)
-end
-
-function -(tri1::tricomplex, tri2::tricomplex)
-    result=mat(tri1)-mat(tri2)
-    return mat2tricomplex(result)
-end
-
+-(tri1::tricomplex, tri2::tricomplex) = mat2tricomplex(mat(tri1)-mat(tri2))
 -(tri::tricomplex)=mat2tricomplex(-mat(tri))
 
-function *(tri1::tricomplex, tri2::tricomplex)
-    result=mat(tri1)*mat(tri2)
-    return mat2tricomplex(result)
-end
+*(tri1::tricomplex, tri2::tricomplex) = mat2tricomplex(mat(tri1)*mat(tri2))
+*(n, tri::tricomplex) = mat2tricomplex(n*mat(tri))
+*(tri::tricomplex, n) = *(n, tri)
 
-function *(n, tri::tricomplex)
-    result = n*mat(tri)
-    return mat2tricomplex(result)
-end
+/(tri1::tricomplex, tri2::tricomplex) = mat2tricomplex(mat(tri1)-mat(tri2))
+/(n, tri::tricomplex) = mat2tricomplex(n*inv(mat(tri)))
+/(tri::tricomplex, n) = mat2tricomplex(mat(tri)/n)
 
-function *(tri::tricomplex, n)
-    result = n*mat(tri)
-    return mat2tricomplex(result)
-end
-
-function /(tri1::tricomplex, tri2::tricomplex)
-    result=mat(tri1)-mat(tri2)
-    return mat2tricomplex(result)
-end
-
-function /(n, tri::tricomplex)
-    result=n*inv(mat(tri))
-    return mat2tricomplex(result)
-end
-
-function /(tri::tricomplex, n)
-    result=mat(tri)/n
-    return mat2tricomplex(result)
-end
-
-function ^(tri::tricomplex, power)
-    result=mat(tri)^power
-    return mat2tricomplex(result)
-end
+^(tri::tricomplex, power) = mat2tricomplex(mat(tri)^power)
 
 function zero(tri::tricomplex)
     i1, i2 = tri.i1, tri.i2
@@ -89,11 +45,7 @@ function zero(tri::tricomplex)
 end
 
 
-
-function abs(tri::tricomplex)
-    i1, i2 = tri.i1, tri.i2
-    return sqrt(i1^2+i2^2)
-end
+abs(tri::tricomplex) = sqrt(tri.i1^2 + tri.i2^2)
 
 function sin(tri::tricomplex)
     i1, i2 = tri.i1, tri.i2
@@ -109,28 +61,14 @@ function cos(tri::tricomplex)
     return tricomplex(out1, out2)
 end
 
-function tan(tri::tricomplex)
-    return sin(tri)/cos(tri)
-end
-
-function cot(tri::tricomplex)
-    return cos(tri)/sin(tri)
-end
-
-function sec(tri::tricomplex)
-    return 1/cos(tri)
-end
-
-function csc(tri::tricomplex)
-    return 1/sin(tri)
-end
+tan(tri::tricomplex) = sin(tri)/cos(tri)
+cot(tri::tricomplex) = cos(tri)/sin(tri)
+sec(tri::tricomplex) = 1/cos(tri)
+csc(tri::tricomplex) = 1/sin(tri)
 
 ## Basic functions: abs, exp, log
 
-function abs(tri::tricomplex)
-    i1, i2 = tri.i1, tri.i2
-    return sqrt(i1^2+i2^2)
-end
+abs(tri::tricomplex) = sqrt(tri.i1^2 + tri.i2^2)
 
 function exp(tri::tricomplex)
     i1, i2 = tri.i1, tri.i2
@@ -155,22 +93,10 @@ function cosh(tri::tricomplex)
     return tricomplex(out1, out2)
 end
 
-function tanh(tri::tricomplex)
-    return sinh(tri)/cosh(tri)
-end
-
-function coth(tri::tricomplex)
-    return cosh(tri)/sinh(tri)
-end
-
-function sech(tri::tricomplex)
-    return 1/cosh(tri)
-end
-
-function csch(tri::tricomplex)
-    return 1/sinh(tri)
-end
-
+tanh(tri::tricomplex) = sinh(tri)/cosh(tri)
+coth(tri::tricomplex) = cosh(tri)/sinh(tri)
+sech(tri::tricomplex) = 1/cosh(tri)
+csch(tri::tricomplex) = 1/sinh(tri)
 
 
 function image3(tri::tricomplex)

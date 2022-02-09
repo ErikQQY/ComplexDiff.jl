@@ -1,16 +1,9 @@
 import Base: sin, cos, tan, cot, sec, csc
-
-## Some auxillary functions
 import Base: real, imag, reim, ==
-
 import Base: asin, acos, atan
-
 import Base: asinh, acosh, atanh
-
 import Base: sinh, cosh, tanh, coth, sech, csch
-
 import Base: abs, exp, log, zero
-
 import Base: +, -, *, /, ^
 
 
@@ -33,95 +26,38 @@ function mat2bicomplex(matrix)
     return bicomplex(out1, out2)
 end
 
-function reim(bi::bicomplex)
-    i1, i2 = bi.i1, bi.i2
-    return (i1, i2)
-end
+reim(bi::bicomplex) = (bi.i1, bi.i2)
 
-function ==(a::bicomplex, b::bicomplex)
-
-end
+==(a::bicomplex, b::bicomplex) = a.i1 == b.i1 && a.i2 == b.i2
 
 ## Basic operators: +, -, *, /, ^
 
-function +(bi1::bicomplex, bi2::bicomplex)
-    result = mat(bi1)+mat(bi2)
-    return mat2bicomplex(result)
-end
++(bi1::bicomplex, bi2::bicomplex) = mat2bicomplex(mat(bi1)+mat(bi2))
++(bi::bicomplex, n) = mat2bicomplex(n.+mat(bi))
++(n, bi::bicomplex) = +(bi, n)
 
-function +(bi::bicomplex, n)
-    result = n .+mat(bi)
-    return mat2bicomplex(result)
-end
-
-function +(n, bi::bicomplex)
-    result = n .+mat(bi)
-    return mat2bicomplex(result)
-end
-
-function -(bi1::bicomplex, bi2::bicomplex)
-    result = mat(bi1)-mat(bi2)
-    return mat2bicomplex(result)
-end
-
-function -(bi::bicomplex, n)
-    result = mat(bi).-n
-    return mat2bicomplex(result)
-end
+-(bi1::bicomplex, bi2::bicomplex) = mat2bicomplex(mat(bi1)-mat(bi2))
+-(bi::bicomplex, n) = mat2bicomplex(mat(bi).-n)
+-(n, bi::bicomplex) = -(bi, n)
+-(bi::bicomplex) = mat2bicomplex(-mat(bi))
 
 
-function -(bi::bicomplex)
-    result = -mat(bi)
-    return mat2bicomplex(result)
-end
+*(bi1::bicomplex, bi2::bicomplex) = mat2bicomplex(mat(bi1)*mat(bi2))
+*(n, bi::bicomplex) = mat2bicomplex(n*mat(bi))
+*(bi::bicomplex, n) = *(n, bi)
 
-function *(bi1::bicomplex, bi2::bicomplex)
-    result = mat(bi1)*mat(bi2)
-    return mat2bicomplex(result)
-end
+/(bi1::bicomplex, bi2::bicomplex) = mat2bicomplex(mat(bi1)/mat(bi2))
+/(n, bi::bicomplex) = mat2bicomplex(n*inv(mat(bi)))
+/(bi::bicomplex, n) = mat2bicomplex(mat(bi)/n)
 
-function *(n, bi::bicomplex)
-    result = n*mat(bi)
-    return mat2bicomplex(result)
-end
+^(bi::bicomplex, power) = mat2bicomplex(mat(bi)^power)
 
-function *(bi::bicomplex, n)
-    result = n*mat(bi)
-    return mat2bicomplex(result)
-end
-
-function /(bi1::bicomplex, bi2::bicomplex)
-    result=mat(bi1)/mat(bi2)
-    return mat2bicomplex(result)
-end
-
-function /(n, bi::bicomplex)
-    result= n*inv(mat(bi))
-    return mat2bicomplex(result)
-end
-
-function /(bi::bicomplex, n)
-    result=mat(bi)/n
-    return mat2bicomplex(result)
-end
-
-function ^(bi::bicomplex, power)
-    result = mat(bi)^power
-    return mat2bicomplex(result)
-end
-
-function zero(bi::bicomplex)
-    i1, i2 = bi.i1, bi.i2
-    return bicomplex(zero(i1), zero(i2))
-end
+zero(bi::bicomplex) = bicomplex(zero(bi.i1), zero(bi.i2))
 
 
 ## Basic functions: abs, exp, log
 
-function abs(bi::bicomplex)
-    i1, i2 = bi.i1, bi.i2
-    return sqrt(i1^2+i2^2)
-end
+abs(bi::bicomplex) = sqrt(bi.i1^2 + bi.i2^2)
 
 function exp(bi::bicomplex)
     i1, i2 = bi.i1, bi.i2
@@ -136,10 +72,8 @@ function log(bi::bicomplex)
     return bicomplex(out1, out2)
 end
 
-function angle(bi::bicomplex)
-    i1, i2 = bi.i1, bi.i2
-    return atan(i2/i1)
-end
+angle(bi::bicomplex) = atan(bi.i2/bi.i1)
+
 
 ## Basic math functions: sin, cos, tan, cot, sec, csc
 
