@@ -7,6 +7,22 @@
 
 ComplexDiff.jl fully utilize the complex step differentiation to compute accurate and high order derivative.
 
+### Get start
+
+```julia
+pkg> add ComplexDiff
+```
+
+### High precision derivative computing
+
+While there are [round-off error](https://en.wikipedia.org/wiki/Round-off_error) when we are using [finite difference](https://en.wikipedia.org/wiki/Finite_difference) to get derivative, by using Complex Step Differentiation, we can obtain extremely high precision derivative.
+
+```julia
+julia> using ComplexDiff
+julia> derivative(sin, 1, 1e-15)
+0.5403023058681398
+```
+
 ### Jacobian and Hessian
 
 It is also very easy to compute Jacobian matrix and Hessian matrix using complex step differentiation:
@@ -18,6 +34,8 @@ julia> jacobian(sin, [1, 2, 3], 0.0000001)
  0.0       -0.416147   0.0
  0.0        0.0       -0.989992
 ```
+
+## References
 
 If you are also interested in Complex Step Differentiation, please see the following papers:
 
