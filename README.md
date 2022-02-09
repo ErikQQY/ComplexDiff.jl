@@ -7,6 +7,18 @@
 
 ComplexDiff.jl fully utilize the complex step differentiation to compute accurate and high order derivative.
 
+### Jacobian and Hessian
+
+It is also very easy to compute Jacobian matrix and Hessian matrix using complex step differentiation:
+
+```julia
+julia> jacobian(sin, [1, 2, 3], 0.0000001)
+3×3 Matrix{Float64}:
+ 0.540302   0.0        0.0
+ 0.0       -0.416147   0.0
+ 0.0        0.0       -0.989992
+```
+
 If you are also interested in Complex Step Differentiation, please see the following papers:
 
 * [Computation of higher-order derivatives using the multi-complex step method](https://folk.ntnu.no/preisig/HAP_Specials/AdvancedSimulation_files/2014/AdvSim-2014__Verheule_Adrian_Complex_differenetiation.pdf)
